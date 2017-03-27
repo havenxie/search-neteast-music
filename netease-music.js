@@ -16,7 +16,7 @@ let count = 0;
  * @param {*} resData 
  */
 let printInfo = (songID, resData) => {
-    console.log(`------------------------第 (${count++}) 首歌曲--------------------------`);
+    console.log(`------------------------第 (${count}) 首歌曲--------------------------`);
     console.log(`歌曲链接：http://music.163.com/?timer=tc#/song?id=${songID}`);
     console.log(`评论总数：${resData.total}`);
     console.log(`精彩评论：${resData.hotComments.length}`);
@@ -54,7 +54,7 @@ let writeFile = (songID, resData) => {
 }
 
 /**
- * 解码参数
+ * 秘钥参数
  */
 let postData = querystring.stringify({
   'params':'IRxdefwoXs2Xc5wjf+7Q95AAn68tkXOtj0TF8o9lVMGLsgqg03tStZgMT6ybFyTHPu6vUaITbTW9P6YLtdnKukAim3BWyJrV+aHXkHs6KGOX7ODyJyZylCCtR0gs++Irr+mBxhdwJj09HP/4z5uaNDqZjzf/u8GXp5KCsQBV1oUWGHeKYN1L8jCbGpCZySOl',
@@ -103,11 +103,11 @@ let getComment = (songID, option, postData) => {
         res.on('data', (data) => {
             str += data;
         });
-
         res.on('end', () => {
             let resData = JSON.parse(str);
             if(resData.total == 0)//忽略评论数为0的歌曲
                 return;
+            ++ count;
             printInfo(songID, resData);
             writeFile(songID, resData);
             // console.log('数据结束');
