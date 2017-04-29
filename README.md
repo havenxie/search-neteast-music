@@ -37,3 +37,7 @@
 4. 切记不要干坏事，这个Demo用来玩一下就好了。
 
 5. 对了你用`cls`命令可以清空控制台。
+
+## 许可
+
+[MIT](./LICENSE) &copy; [havenxie](http://github.com/havenxie)
